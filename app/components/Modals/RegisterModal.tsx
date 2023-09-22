@@ -21,6 +21,7 @@ import {
 import useRegisterModal from '@/app/hooks/useRegisterModal'
 import Modal from './Modal'
 import { error } from 'console'
+import { signIn } from 'next-auth/react'
 
 const RegisterModal = () => {
 
@@ -115,7 +116,8 @@ const RegisterModal = () => {
             outline
             label = "Continue with GitHub"
             icon = {AiFillGithub}
-            onClick = {() => {}}/>
+            onClick = {() => signIn('github')}
+            />
 
             <div className='
             text-neutral-500

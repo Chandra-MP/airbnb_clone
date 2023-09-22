@@ -10,9 +10,10 @@ import { User } from '@prisma/client'
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
+import { safeUser } from '@/app/types';
 
 interface UserMenuProps {
-  currentUser?: User | null
+  currentUser?: safeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({
@@ -39,7 +40,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
         <div onClick={toggleOpen} className="toggle_menu p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
           <AiOutlineMenu />
           <div className='toggle_menu_avatar hidden md:block'>
-            <Avatar />
+            <Avatar src= {currentUser?.image }/>
           </div>
         </div>
       </div>
@@ -85,7 +86,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   label='Sign Up'
                 />
               </>
-            )};
+            )}
           </div>
         </div>
       )}

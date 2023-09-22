@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation'
 
 
 
+
 import {
     FieldValues,
     SubmitHandler,
@@ -122,7 +123,7 @@ const LoginModal = () => {
             outline
             label = "Continue with GitHub"
             icon = {AiFillGithub}
-            onClick = {() => {}}/>
+            onClick = {() => signIn('github')}/>
 
             <div className='
             text-neutral-500

@@ -11,10 +11,11 @@ import UserMenu from './UserMenu'
 import { User } from '@prisma/client'
 
 //Similarily, we can use any model that was in the Database schema (or defined in prismadb file at airbnb_app/prisma/schema.prisma)
-import { Account } from '@prisma/client'
+
+import { safeUser } from '@/app/types'
 
 interface NavbarProps {
-  currentUser?: User
+  currentUser?: safeUser | null
 }
 
 const navbar: React.FC<NavbarProps> = ({
