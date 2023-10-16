@@ -74,6 +74,11 @@ const LoginModal = () => {
         })
     }
 
+    const toggleModals = useCallback(() => {
+        loginModal.onClose();
+        registerModal.onOpen();
+    }, [loginModal, registerModal])
+
     const bodyContent = (
         <div className='
         flex 
@@ -145,7 +150,8 @@ const LoginModal = () => {
                     font-semibold
                     cursor-pointer
                     hover:underline' 
-                    onClick={registerModal.onClose}>
+                    onClick={toggleModals}
+                    >
                         Sign Up
                     </div>
 

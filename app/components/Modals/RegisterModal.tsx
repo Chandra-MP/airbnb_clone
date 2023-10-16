@@ -22,10 +22,13 @@ import useRegisterModal from '@/app/hooks/useRegisterModal'
 import Modal from './Modal'
 import { error } from 'console'
 import { signIn } from 'next-auth/react'
+import LoginModal from './LoginModal'
+import useLoginModal from '@/app/hooks/useLoginModal'
 
 const RegisterModal = () => {
 
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -41,6 +44,11 @@ const RegisterModal = () => {
             password: ''
         }
     });
+
+    const toggleModals = useCallback(()=>{
+        registerModal.onClose();
+        loginModal.onOpen();
+    }, [loginModal, registerModal])
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
@@ -139,7 +147,7 @@ const RegisterModal = () => {
                     font-semibold
                     cursor-pointer
                     hover:underline' 
-                    onClick={registerModal.onClose}>
+                    onClick={toggleModals}>
                         Log In
                     </div>
 

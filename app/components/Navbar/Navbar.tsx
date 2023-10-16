@@ -5,6 +5,7 @@ import Container from '../Container'
 import Logo from './Logo'
 import Search from './Search'
 import UserMenu from './UserMenu'
+import Categories from './Categories'
 
 //This @prisma/client was generated when we pushed our Schema to the data base by using, npx prismadb push
 //So User model is present in the @prisma/client and hence we can use it as a Type
@@ -35,6 +36,8 @@ const navbar: React.FC<NavbarProps> = ({
           </div>
         </Container>
       </div>
+      <Categories />
+
     </div>
   )
 }
