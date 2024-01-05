@@ -26,7 +26,9 @@
     "react-hook-form": "^7.46.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-select": "^5.8.0",
     "typescript": "5.1.6",
+    "world-countries": "^5.0.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

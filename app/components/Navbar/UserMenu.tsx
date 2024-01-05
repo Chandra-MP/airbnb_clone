@@ -11,6 +11,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react'
 import { safeUser } from '@/app/types';
+import useRentModal from '@/app/hooks/useRentModal';
 
 interface UserMenuProps {
   currentUser?: safeUser | null
@@ -22,19 +23,39 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
-
+  const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
 
+  //If user is not logged in and they click on "Airbnb your Home!" button, redirect them to login!
+  const onRent = useCallback(()=>{
+    if(!currentUser){
+      //If we do not return the loginModal then it will execute the condition after the if statement
+      return loginModal.onOpen();
+    }
+    //Open Rent modal
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal])
+
+
+
+
   return (
     <div className='relative user_menu'>
-      <div className='flex flex-row items-center gap-3 toggle_menu'>
-        <div className='airbnb_home hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer' onClick={() => {
-          alert("Hello there! Watcha want mah boi?")
-        }}>
+      <div className='flex flex-row i tems-center gap-3 toggle_menu'>
+        <div className='airbnb_home 
+        hidden 
+        md:block 
+        text-sm 
+        font-semibold 
+        py-3 px-4 
+        rounded-full
+         hover:bg-neutral-100 
+         transition cursor-pointer' 
+          onClick={onRent}>
           Airbnb Your Home!
         </div>
         <div onClick={toggleOpen} className="toggle_menu p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
@@ -66,12 +87,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   label='My properties'
                 />
                 <MenuItem
-                  onClick={() => { }}
+                  onClick={onRent}
                   label='Airbnb my Home'
                 />
                 <hr />
                 <MenuItem 
-                 onClick={() => signOut()}
+                 onClick={() => signOut()} 
                  label='Logout'
                  />
               </>
